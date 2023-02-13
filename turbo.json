@@ -11,6 +11,10 @@
     },
     "dev": {
       "cache": false
+    },
+    "tsc-watch": {
+      "dependsOn": ["^build"],
+      "outputs": []
     }
   }
 }
