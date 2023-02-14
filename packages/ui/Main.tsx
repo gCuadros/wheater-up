@@ -1,18 +1,12 @@
-import { BoxProps, Container } from "@chakra-ui/react";
+import { StackProps, Stack } from "@chakra-ui/react";
 
-interface Props extends BoxProps {}
+interface Props extends StackProps {}
 
 const Main = ({ children, ...props }: Props) => {
   return (
-    <Container
-      width="full"
-      maxW="920px"
-      margin="0 auto"
-      bg="#FFFFFF"
-      {...props}
-    >
+    <Stack width="full" maxW="920px" margin="0 auto" bg="#FFFFFF" {...props}>
       {children}
-    </Container>
+    </Stack>
   );
 };
 
