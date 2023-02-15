@@ -1,5 +1,5 @@
 import { HStack, Text, VStack } from "@chakra-ui/react";
-import { useCity } from "api/hooks/useCity";
+import { useForecastCity } from "api/hooks/useForecastCity";
 import Header from "containers/City/Header";
 import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
@@ -11,7 +11,7 @@ import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 const City = () => {
   const { date, monthName } = useDateTime();
-  const { data } = useCity({ params: { q: "san-francisco" } });
+  const { data } = useForecastCity({ query: { q: "madrid" } });
   return (
     <Main
       borderRadius="16px"

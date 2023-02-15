@@ -15,9 +15,11 @@
     "@tanstack/react-query": "^4.24.6",
     "framer-motion": "^9.0.2",
     "next": "^13.1.1",
-    "react": "^18.2.0",
+    "qs": "^6.10.3",
     "react-dom": "^18.2.0",
-    "ui": "*"
+    "react": "^18.2.0",
+    "ui": "*",
+    "utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

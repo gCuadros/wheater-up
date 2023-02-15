@@ -20,17 +20,15 @@ export interface CityDto {
   deletedAt?: number;
 }
 
-export enum CITY_POPULATE_OPTIONS {
-  AIR = "aqi",
-}
-
-export type CityDtoPopulate = {
-  [CITY_POPULATE_OPTIONS.AIR]?: any;
-};
-
 export type FindCityByIpOrSlug = {
   request: {
-    q?: number | string;
+    query: {
+      key?: string;
+      q?: number | string;
+      days?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      aqi?: "yes" | "no";
+      alerts?: "yes" | "no";
+    };
   };
   response: CityDto;
 };
