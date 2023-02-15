@@ -39,6 +39,9 @@
     ]
   },
   "dependencies": {
+    "@fontsource/manrope": "^4.5.13",
+    "@fontsource/roboto": "^4.5.8",
+    "@fontsource/urbanist": "^4.5.17",
     "react-icons": "^4.7.1"
   }
 }
