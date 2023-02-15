@@ -1,6 +1,13 @@
-import { Children, RefObject, useEffect, useRef, useState } from "react";
+import { Children, useEffect, useRef, useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { Box, Flex, FlexProps, HStack, IconButton } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  FlexProps,
+  HStack,
+  IconButton,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import useDraggableHorizontalScroll from "utils/useDraggableHorizontalScroll";
 import useScrollPositionX from "utils/useScrollPositionX";
 
@@ -11,6 +18,7 @@ interface Props extends FlexProps {
 const Carrousel = ({ showArrows, children, ...props }: Props) => {
   const reactChildren = Children.toArray(children);
   const carrouselRef = useRef<HTMLDivElement>(null);
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   const { onMouseDown, isGrabbing } =
     useDraggableHorizontalScroll(carrouselRef);
@@ -51,7 +59,7 @@ const Carrousel = ({ showArrows, children, ...props }: Props) => {
       gap={"3"}
     >
       <HStack>
-        {showArrows && isPrevTabsButton && (
+        {showArrows && !isMobile && isPrevTabsButton && (
           <IconButton
             aria-label="prev-tabs-button"
             bgColor={"transparent"}
@@ -88,7 +96,7 @@ const Carrousel = ({ showArrows, children, ...props }: Props) => {
             </Box>
           ))}
         </Flex>
-        {showArrows && isNextTabsButton && (
+        {showArrows && !isMobile && isNextTabsButton && (
           <IconButton
             aria-label="nex-tabs-button"
             bgColor={"transparent"}

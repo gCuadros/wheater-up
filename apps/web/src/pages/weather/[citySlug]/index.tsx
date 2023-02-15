@@ -3,7 +3,11 @@ import City from "containers/City";
 
 const Page = () => {
   return (
-    <VStack height="100vh" justifyContent="center" alignItems="center">
+    <VStack
+      height={{ base: "auto", md: "100vh" }}
+      justifyContent="center"
+      alignItems="center"
+    >
       <City />
     </VStack>
   );

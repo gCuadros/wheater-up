@@ -4,6 +4,8 @@ import { BsFillMoonFill } from "react-icons/bs";
 import { Box, HStack, Skeleton, StackProps, Text } from "@chakra-ui/react";
 import SearchInput from "ui/SearchInput";
 
+import Thermometer from "../CityThermometer.tsx";
+
 interface Props extends StackProps {
   temperature?: number;
   isDay?: boolean;
@@ -27,30 +29,13 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
         {isLoading && (
           <Skeleton height="30px" width="40px" borderRadius="8px" />
         )}
-        {temperature && !isLoading && (
-          <HStack spacing={0}>
-            <Text fontSize="20px" fontWeight="bold" color="#363e64">
-              {temperature}
-            </Text>
-            <Text
-              as="span"
-              fontSize="12px"
-              fontWeight="bold"
-              color="#363e64"
-              alignSelf="flex-start"
-            >
-              º
-            </Text>
-            <Text
-              as="span"
-              fontSize="20px"
-              fontWeight="bold"
-              color="#363e64"
-              paddingInlineStart="5px"
-            >
-              C
-            </Text>
-          </HStack>
+        {!isLoading && (
+          <Thermometer
+            temperature={temperature}
+            temperatureTextSize="20px"
+            degreeTextSize="12px"
+            textColor="#363e64"
+          />
         )}
         {isLoading && (
           <Skeleton height="20px" width="20px" borderRadius="8px" />

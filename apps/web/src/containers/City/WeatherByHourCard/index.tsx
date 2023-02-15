@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { Box, BoxProps, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { useDateTime } from "utils";
 
+import Thermometer from "../CityThermometer.tsx";
+
 interface Props extends BoxProps {
   time?: string;
   locationTemperature?: number;
@@ -27,7 +29,7 @@ const WeatherByHourCard = ({
 
   return (
     <VStack
-      minWidth={{ base: "100%", md: "120px" }}
+      width={{ base: "100px", md: "120px" }}
       borderRadius="16px"
       border="1px solid #faf9f9"
       padding="20px"
@@ -51,33 +53,12 @@ const WeatherByHourCard = ({
       <Box boxSize="26px">
         <Image src={iconUrl} alt="weather" />
       </Box>
-      <HStack spacing={0}>
-        <Text
-          fontSize="14px"
-          fontWeight="bold"
-          color={isThisHour ? "white" : "#363e64"}
-        >
-          {locationTemperature}
-        </Text>
-        <Text
-          as="span"
-          fontSize="10px"
-          fontWeight="bold"
-          color={isThisHour ? "white" : "#363e64"}
-          alignSelf="flex-start"
-        >
-          º
-        </Text>
-        <Text
-          as="span"
-          fontSize="14px"
-          fontWeight="bold"
-          color={isThisHour ? "white" : "#363e64"}
-          paddingInlineStart="5px"
-        >
-          C
-        </Text>
-      </HStack>
+      <Thermometer
+        temperature={locationTemperature}
+        temperatureTextSize="14px"
+        degreeTextSize="10px"
+        textColor={isThisHour ? "white" : "#363e64"}
+      />
     </VStack>
   );
 };

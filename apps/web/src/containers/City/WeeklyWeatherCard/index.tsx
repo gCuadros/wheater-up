@@ -1,5 +1,7 @@
-import { Box, BoxProps, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, BoxProps, Image, Text, VStack } from "@chakra-ui/react";
 import { getUrlIconWeather, useDateTime } from "utils";
+
+import Thermometer from "../CityThermometer.tsx";
 
 interface Props extends BoxProps {
   time?: string;
@@ -17,7 +19,7 @@ const WeeklyWeatherCard = ({
 
   return (
     <VStack
-      minW={{ base: "100%", md: "120px" }}
+      width={{ base: "100px", md: "120px" }}
       borderRadius="16px"
       border="1px solid #faf9f9"
       padding="20px"
@@ -32,20 +34,12 @@ const WeeklyWeatherCard = ({
       <Text fontSize="14px" fontWeight={600} color="#363e64">
         {dayName}
       </Text>
-      <HStack spacing={0}>
-        <Text fontSize="14px" fontWeight="bold" color="#363e64">
-          {locationTemperature}
-        </Text>
-        <Text
-          as="span"
-          fontSize="7px"
-          fontWeight="bold"
-          color="#363e64"
-          alignSelf="flex-start"
-        >
-          º
-        </Text>
-      </HStack>
+      <Thermometer
+        temperature={locationTemperature}
+        temperatureTextSize="14px"
+        degreeTextSize="10px"
+        textColor="#363e64"
+      />
     </VStack>
   );
 };

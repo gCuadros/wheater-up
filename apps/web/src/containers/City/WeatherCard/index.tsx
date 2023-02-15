@@ -12,8 +12,10 @@ import {
 } from "@chakra-ui/react";
 import { getUrlIconWeather, useDateTime } from "utils";
 
+import Thermometer from "../CityThermometer.tsx";
+
 interface Props extends BoxProps {
-  locationTime?: number;
+  locationTime?: string;
   locationName?: string;
   locationTemperature?: number;
   conditionStatus?: string;
@@ -38,8 +40,9 @@ const WeatherCard = ({
       borderRadius="16px"
       padding="20px"
       width="full"
+      height="full"
       background="linear-gradient(to bottom right, #94A3DD, #1D83FF)"
-      spacing={4}
+      spacing={{ base: 2, md: 4 }}
       {...props}
     >
       <HStack
@@ -58,38 +61,18 @@ const WeatherCard = ({
           {locationName}
         </Text>
       </HStack>
-      <Box boxSize="100px">
+      <Box boxSize={{ base: "50px", md: "100px" }}>
         <Image src={getUrlIconWeather(weatherCode)} alt="weather" />
       </Box>
       <Text color="white" fontSize="12px" fontWeight={400} textShadow="dark-lg">
         Today, {date} {monthName}
       </Text>
-      {locationTemperature && (
-        <HStack spacing={0}>
-          <Text fontSize="20px" fontWeight="bold" color="white">
-            {locationTemperature}
-          </Text>
-          <Text
-            as="span"
-            fontSize="12px"
-            fontWeight="bold"
-            color="white"
-            alignSelf="flex-start"
-          >
-            º
-          </Text>
-          <Text
-            as="span"
-            fontSize="20px"
-            fontWeight="bold"
-            color="white"
-            paddingInlineStart="5px"
-          >
-            C
-          </Text>
-        </HStack>
-      )}
-
+      <Thermometer
+        temperature={locationTemperature}
+        temperatureTextSize="20px"
+        degreeTextSize="12px"
+        textColor="white"
+      />
       <VStack width="full" maxWidth="150px" spacing={2} alignItems="center">
         {conditionStatus && (
           <Text

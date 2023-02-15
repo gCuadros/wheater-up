@@ -1,9 +1,8 @@
-import { HStack, Text, VStack } from "@chakra-ui/react";
+import { Stack, Text, VStack } from "@chakra-ui/react";
 import { useCurrentForecastCity } from "api/hooks/slug";
 import Header from "containers/City/Header";
 import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
-import { useDateTime } from "utils";
 
 import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";
@@ -14,7 +13,7 @@ const City = () => {
 
   return (
     <Main
-      borderRadius="16px"
+      borderRadius={{ base: "0", md: "16px" }}
       spacing={8}
       paddingY="20px"
       backgroundColor="#f0f5ff"
@@ -25,7 +24,11 @@ const City = () => {
         isDay={Boolean(cityForecast?.current.is_day)}
         isLoading={isLoading}
       />
-      <HStack justifyContent="space-between" alignItems="flex-start">
+      <Stack
+        flexDirection={{ base: "column", md: "row" }}
+        justifyContent="space-between"
+        alignItems="flex-start"
+      >
         <VStack
           width="full"
           maxWidth={{ base: "100%", md: "350px" }}
@@ -43,7 +46,7 @@ const City = () => {
             wind={cityForecast?.current.wind_kph}
             humidity={cityForecast?.current.humidity}
             weatherCode={cityForecast?.current.condition.code}
-            minHeight="365px"
+            maxHeight={{ base: "full", md: "365px" }}
           />
         </VStack>
         <VStack
@@ -61,7 +64,7 @@ const City = () => {
             <Text fontSize="14px" fontWeight={600} color="#363e64">
               Weather by hours
             </Text>
-            <Carrousel showArrows gap={8}>
+            <Carrousel showArrows gap={{ base: 4, md: 8 }}>
               {cityForecast?.forecast.forecastday[0].hour.map((time, index) => (
                 <WeatherByHourCard
                   key={index}
@@ -72,11 +75,11 @@ const City = () => {
               ))}
             </Carrousel>
           </VStack>
-          <VStack width="full" alignItems="flex-start" padding="0px 20px 20px">
+          <VStack width="full" alignItems="flex-start" paddingX="20px">
             <Text fontSize="14px" fontWeight={600} color="#363e64">
               Weekly Weather
             </Text>
-            <Carrousel showArrows gap={8}>
+            <Carrousel showArrows gap={{ base: 4, md: 8 }}>
               {cityForecast?.forecast.forecastday.map((day, index) => (
                 <WeeklyWeatherCard
                   key={index}
@@ -88,7 +91,7 @@ const City = () => {
             </Carrousel>
           </VStack>
         </VStack>
-      </HStack>
+      </Stack>
     </Main>
   );
 };
