@@ -2,7 +2,7 @@ import { Box, BoxProps, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { getUrlIconWeather, useDateTime } from "utils";
 
 interface Props extends BoxProps {
-  time?: Date;
+  time?: string;
   locationTemperature?: number;
   conditionStatus?: number;
 }
@@ -14,6 +14,7 @@ const WeeklyWeatherCard = ({
   ...props
 }: Props) => {
   const { dayName } = useDateTime(time);
+
   return (
     <VStack
       minW={{ base: "100%", md: "120px" }}

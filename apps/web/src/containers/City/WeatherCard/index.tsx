@@ -13,7 +13,7 @@ import {
 import { getUrlIconWeather, useDateTime } from "utils";
 
 interface Props extends BoxProps {
-  locationTime?: Date;
+  locationTime?: number;
   locationName?: string;
   locationTemperature?: number;
   conditionStatus?: string;

@@ -3,6 +3,7 @@ import { useCurrentForecastCity } from "api/hooks/slug";
 import Header from "containers/City/Header";
 import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
+import { useDateTime } from "utils";
 
 import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";
@@ -10,6 +11,7 @@ import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 const City = () => {
   const { data: cityForecast, isLoading } = useCurrentForecastCity();
+
   return (
     <Main
       borderRadius="16px"

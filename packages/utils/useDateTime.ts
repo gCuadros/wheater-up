@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useDateTime = (targetDate?: Date) => {
+export const useDateTime = (targetDate?: number | string) => {
   const [dateTime] = useState(new Date(targetDate || Date.now()));
   const [date] = useState(dateTime.getDate());
   const [dayName] = useState(

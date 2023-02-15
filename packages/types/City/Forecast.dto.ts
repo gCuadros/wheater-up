@@ -4,7 +4,7 @@ import { ConditionDto } from "./Condition.dto";
 import { HourDto } from "./Hour.dto";
 
 export interface ForecastDto {
-  date: Date;
+  date: string;
   date_epoch: number;
   day: {
     maxtemp_c: number;
