@@ -1,8 +1,9 @@
 import { Stack, Text, VStack } from "@chakra-ui/react";
 import { useCurrentForecastCity } from "api/hooks/slug";
 import Header from "containers/City/Header";
-import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
+
+import Carrousel from "components/Carrousel";
 
 import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";

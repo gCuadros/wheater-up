@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { ReactChild, useEffect, useRef } from "react";
 import { Box, BoxProps, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { useDateTime } from "utils";
 

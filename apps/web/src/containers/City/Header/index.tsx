@@ -17,7 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { useSearchCities } from "api/hooks/city/useSearchCities";
 import { useRouter } from "next/router";
-import SearchInput from "ui/SearchInput";
+
+import SearchInput from "components/SearchInput";
 
 import Thermometer from "../CityThermometer.tsx";
 
