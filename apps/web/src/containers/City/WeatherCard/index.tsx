@@ -7,7 +7,7 @@ import {
   HStack,
   Divider,
 } from "@chakra-ui/react";
-import { CiLocationOn } from "react-icons/ci";
+import { TiLocationOutline } from "react-icons/ti";
 import { SiWindicss } from "react-icons/si";
 import { MdOutlineWaterDrop } from "react-icons/md";
 
@@ -26,8 +26,13 @@ const WeatherCard = ({ date, monthName, ...props }: Props) => {
       spacing={4}
       {...props}
     >
-      <HStack width="full" justifyContent="flex-start" spacing={2}>
-        <CiLocationOn color="white" fontSize="14px" fontWeight={600} />
+      <HStack
+        width="full"
+        justifyContent="flex-start"
+        alignItems="center"
+        spacing={1}
+      >
+        <TiLocationOutline color="white" fontSize="20px" fontWeight={600} />
         <Text
           color="white"
           fontSize="16px"

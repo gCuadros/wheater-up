@@ -1,10 +1,11 @@
 import { HStack, Text, VStack } from "@chakra-ui/react";
 import Header from "containers/City/Header";
+import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
 import { useDateTime } from "utils/useDateTime";
-import WeatherByHours from "./WeatherByHours";
+import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";
-import WeeklyWeather from "./WeeklyWeather";
+import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 const City = () => {
   const { date, monthName } = useDateTime();
@@ -18,23 +19,37 @@ const City = () => {
           alignItems="flex-start"
           paddingX="20px"
         >
-          <Text fontSize="14px" fontWeight={600}>
+          <Text fontSize="14px" fontWeight={600} color="#888">
             Current Weather
           </Text>
           <WeatherCard date={date} monthName={monthName} />
         </VStack>
-        <VStack width="full" height="full" justifyContent="space-between">
-          <VStack width="full" alignItems="flex-start" paddingX="20px">
-            <Text fontSize="14px" fontWeight={600}>
+        <VStack
+          width="full"
+          height="full"
+          justifyContent="space-between"
+          overflow="hidden"
+        >
+          <VStack
+            width="full"
+            maxW={{ base: "100%", md: "-webkit-fill-available" }}
+            alignItems="flex-start"
+            paddingX="20px"
+          >
+            <Text fontSize="14px" fontWeight={600} color="#888">
               Weather by hours
             </Text>
-            <WeatherByHours />
+            <Carrousel gap={4} showArrows>
+              {[...Array(9)].map((_, i) => (
+                <WeatherByHourCard />
+              ))}
+            </Carrousel>
           </VStack>
           <VStack width="full" alignItems="flex-start" paddingX="20px">
-            <Text fontSize="14px" fontWeight={600}>
+            <Text fontSize="14px" fontWeight={600} color="#888">
               Weekly Weather
             </Text>
-            <WeeklyWeather />
+            <WeeklyWeatherCard />
           </VStack>
         </VStack>
       </HStack>

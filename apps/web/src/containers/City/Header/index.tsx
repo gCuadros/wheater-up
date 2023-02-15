@@ -23,13 +23,29 @@ const Header = ({ ...props }: Props) => {
           borderRadius="8px"
           searchValue={search}
           onChange={setSearch}
+          placeholder="Search for places"
         />
       </Box>
       <HStack>
-        <Text fontSize="sm" fontWeight="bold">
-          9º
-        </Text>
-        {isAtNight ? <BsFillMoonFill /> : <BiSun />}
+        <HStack spacing={0}>
+          <Text fontSize="24px" fontWeight="bold" color="#363e64">
+            9
+          </Text>
+          <Text
+            as="span"
+            fontSize="12px"
+            fontWeight="bold"
+            color="#363e64"
+            alignSelf="flex-start"
+          >
+            º
+          </Text>
+        </HStack>
+        {isAtNight ? (
+          <BsFillMoonFill color="#363e64" />
+        ) : (
+          <BiSun color="#363e64" />
+        )}
       </HStack>
     </HStack>
   );

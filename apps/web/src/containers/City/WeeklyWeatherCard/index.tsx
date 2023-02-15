@@ -2,7 +2,7 @@ import { BoxProps, HStack } from "@chakra-ui/react";
 
 interface Props extends BoxProps {}
 
-const WeeklyWeather = () => {
+const WeeklyWeatherCard = () => {
   return (
     <HStack
       borderRadius="8px"
@@ -13,4 +13,4 @@ const WeeklyWeather = () => {
   );
 };
 
-export default WeeklyWeather;
+export default WeeklyWeatherCard;
