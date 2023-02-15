@@ -31,9 +31,5 @@
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "^4.5.3"
-  },
-  "resolutions": {
-    "@types/react": "17.0.2",
-    "@types/react-dom": "17.0.2"
   }
 }
