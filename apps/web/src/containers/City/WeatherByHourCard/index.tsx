@@ -1,9 +1,19 @@
-import { AiFillCloud } from "react-icons/ai";
-import { BoxProps, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, BoxProps, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { useDateTime } from "utils";
 
-interface Props extends BoxProps {}
+interface Props extends BoxProps {
+  time?: Date;
+  locationTemperature?: number;
+  iconUrl?: string;
+}
 
-const WeatherByHourCard = () => {
+const WeatherByHourCard = ({
+  time,
+  locationTemperature,
+  iconUrl,
+  ...props
+}: Props) => {
+  const { hours } = useDateTime(time);
   return (
     <VStack
       minWidth={{ base: "100%", md: "120px" }}
@@ -13,23 +23,35 @@ const WeatherByHourCard = () => {
       spacing={4}
       boxShadow="md"
       backgroundColor="white"
+      {...props}
     >
-      <Text fontSize="14px" fontWeight={600} color="#363e64">
-        10AM
+      <Text fontSize="16px" fontWeight={600} color="#363e64">
+        {hours}
       </Text>
-      <AiFillCloud color="#363e64" fontSize="26px" fontWeight={600} />
+      <Box boxSize="26px">
+        <Image src={iconUrl} alt="weather" />
+      </Box>
       <HStack spacing={0}>
         <Text fontSize="14px" fontWeight="bold" color="#363e64">
-          9
+          {locationTemperature}
         </Text>
         <Text
           as="span"
-          fontSize="7px"
+          fontSize="10px"
           fontWeight="bold"
           color="#363e64"
           alignSelf="flex-start"
         >
           º
+        </Text>
+        <Text
+          as="span"
+          fontSize="14px"
+          fontWeight="bold"
+          color="#363e64"
+          paddingInlineStart="5px"
+        >
+          C
         </Text>
       </HStack>
     </VStack>

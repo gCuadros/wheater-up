@@ -5,6 +5,6 @@ export interface LocationDto {
   lat: number;
   lon: number;
   tz_id: string;
-  localtime_epoch: number;
+  localtime_epoch: Date;
   localtime: Date;
 }

@@ -1,41 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useDateTime = (targetDate?: Date) => {
-  const [dateTime, setDateTime] = useState(new Date(targetDate || Date.now()));
-  const [date, setDate] = useState(dateTime.getDate());
-  const [dayName, setDayName] = useState(
-    new Intl.DateTimeFormat("en-ES", { weekday: "long" }).format(date)
+  const [dateTime] = useState(new Date(targetDate || Date.now()));
+  const [date] = useState(dateTime.getDate());
+  const [dayName] = useState(
+    new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(dateTime)
   );
 
-  const [month, setMonth] = useState(dateTime.getMonth());
-  const [monthName, setMonthName] = useState(
-    new Intl.DateTimeFormat("en-ES", { month: "long" }).format(month)
+  const [month] = useState(dateTime.getMonth());
+  const [monthName] = useState(
+    new Intl.DateTimeFormat("en-US", { month: "long" }).format(dateTime)
   );
-  const [year, setYear] = useState(dateTime.getFullYear());
-  const [hours, setHour] = useState(dateTime.getHours());
-  const [minutes, setMinutes] = useState(dateTime.getMinutes());
-
-  useEffect(() => {
-    const dateTimeInterval = setInterval(() => {
-      setDateTime(new Date());
-      setDate(dateTime.getDate());
-      setDayName(
-        new Intl.DateTimeFormat("en-ES", { weekday: "long" }).format(date)
-      );
-
-      setMonth(dateTime.getMonth());
-      setMonthName(
-        new Intl.DateTimeFormat("en-ES", { month: "long" }).format(month)
-      );
-      setYear(dateTime.getFullYear());
-      setHour(dateTime.getHours());
-      setMinutes(dateTime.getMinutes());
-    }, 1000);
-
-    return () => {
-      clearInterval(dateTimeInterval);
-    };
-  }, [dateTime, date, dayName, month, monthName, year, hours, minutes]);
+  const [year] = useState(dateTime.getFullYear());
+  const [hours] = useState(
+    new Intl.DateTimeFormat("en-US", { hour: "2-digit" }).format(dateTime)
+  );
+  const [minutes] = useState(
+    ` ${dateTime.getMinutes() < 10 ? "0" : ""}${dateTime
+      .getMinutes()
+      .toString()}`
+  );
 
   return {
     dateTime,

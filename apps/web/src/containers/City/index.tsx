@@ -36,7 +36,7 @@ const City = () => {
           <WeatherCard
             locationName={cityForecast?.location.name}
             locationTime={cityForecast?.location.localtime}
-            locationTemp={cityForecast?.current.temp_c}
+            locationTemperature={cityForecast?.current.temp_c}
             conditionStatus={cityForecast?.current.condition.text}
             wind={cityForecast?.current.wind_kph}
             humidity={cityForecast?.current.humidity}
@@ -59,9 +59,14 @@ const City = () => {
             <Text fontSize="14px" fontWeight={600} color="#363e64">
               Weather by hours
             </Text>
-            <Carrousel showArrows>
-              {[...Array(9)].map((_, i) => (
-                <WeatherByHourCard key={i} />
+            <Carrousel showArrows gap={8}>
+              {cityForecast?.forecast.forecastday[0].hour.map((time, index) => (
+                <WeatherByHourCard
+                  key={index}
+                  time={time.time}
+                  locationTemperature={time.temp_c}
+                  iconUrl={time.condition.icon}
+                />
               ))}
             </Carrousel>
           </VStack>
@@ -69,9 +74,9 @@ const City = () => {
             <Text fontSize="14px" fontWeight={600} color="#363e64">
               Weekly Weather
             </Text>
-            <Carrousel showArrows>
-              {[...Array(9)].map((_, i) => (
-                <WeeklyWeatherCard key={i} />
+            <Carrousel showArrows gap={8}>
+              {cityForecast?.forecast.forecastday.map((day) => (
+                <WeeklyWeatherCard key={day.date_epoch} />
               ))}
             </Carrousel>
           </VStack>

@@ -15,7 +15,7 @@ import { getUrlIconWeather, useDateTime } from "utils";
 interface Props extends BoxProps {
   locationTime?: Date;
   locationName?: string;
-  locationTemp?: number;
+  locationTemperature?: number;
   conditionStatus?: string;
   wind?: number;
   humidity?: number;
@@ -25,7 +25,7 @@ interface Props extends BoxProps {
 const WeatherCard = ({
   locationTime,
   locationName,
-  locationTemp,
+  locationTemperature,
   conditionStatus,
   wind,
   humidity,
@@ -64,10 +64,10 @@ const WeatherCard = ({
       <Text color="white" fontSize="12px" fontWeight={400} textShadow="dark-lg">
         Today, {date} {monthName}
       </Text>
-      {locationTemp && (
+      {locationTemperature && (
         <HStack spacing={0}>
           <Text fontSize="20px" fontWeight="bold" color="white">
-            {locationTemp}
+            {locationTemperature}
           </Text>
           <Text
             as="span"

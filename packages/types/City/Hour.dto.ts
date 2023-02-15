@@ -2,8 +2,8 @@ import { AirQualityDto } from "./AirQuality.dto";
 import { ConditionDto } from "./Condition.dto";
 
 export interface HourDto {
-  time_epoch: number;
-  time: string;
+  time_epoch: Date;
+  time: Date;
   temp_c: number;
   temp_f: number;
   is_day: number;
