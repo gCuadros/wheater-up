@@ -12,7 +12,7 @@
     "test": "turbo run test",
     "dev:web": "turbo run dev --filter=web",
     "tsc-watch": "turbo run tsc-watch",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint -- --fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install"
   },
@@ -37,5 +37,13 @@
     "*.json": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^4.5.13",
+    "@fontsource/roboto": "^4.5.8",
+    "@fontsource/urbanist": "^4.5.17",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "install": "^0.13.0",
+    "lodash": "^4.17.21"
   }
 }

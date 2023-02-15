@@ -4,7 +4,7 @@
     "paths": {
       "@/components/*": ["/components/*"],
       "@/containers/*": ["/containers/*"],
-      "@/api/*": ["/api/*"]
+      "@/api/*": ["/api/*"],
     }
   },
   "extends": "tsconfig/nextjs.json",
