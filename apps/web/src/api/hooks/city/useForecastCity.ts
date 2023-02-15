@@ -32,9 +32,7 @@ export const fetchForecastCity = async ({
   const response: FindCityForecastByIpOrSlug["response"] = await fetcher(
     `/forecast.json?${q}`
   );
-  return {
-    ...response,
-  };
+  return response;
 };
 
 export const useForecastCity = (props: Props) =>

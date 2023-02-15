@@ -1,5 +1,5 @@
 import { HStack, Text, VStack } from "@chakra-ui/react";
-import { useForecastCity } from "api/hooks/useForecastCity";
+import { useCurrentForecastCity } from "api/hooks/slug";
 import Header from "containers/City/Header";
 import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
@@ -11,7 +11,7 @@ import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 const City = () => {
   const { date, monthName } = useDateTime();
-  const { data } = useForecastCity({ query: { q: "madrid" } });
+  const { data: cityForecast, isLoading } = useCurrentForecastCity();
   return (
     <Main
       borderRadius="16px"
@@ -19,7 +19,11 @@ const City = () => {
       paddingY="20px"
       backgroundColor="#f0f5ff"
     >
-      <Header paddingX="20px" />
+      <Header
+        paddingX="20px"
+        temperature={cityForecast?.current.temp_c}
+        isDay={Boolean(cityForecast?.current.is_day)}
+      />
       <HStack justifyContent="space-between" alignItems="flex-start">
         <VStack
           width="full"
@@ -49,7 +53,7 @@ const City = () => {
             </Text>
             <Carrousel showArrows>
               {[...Array(9)].map((_, i) => (
-                <WeatherByHourCard />
+                <WeatherByHourCard key={i} />
               ))}
             </Carrousel>
           </VStack>
@@ -59,7 +63,7 @@ const City = () => {
             </Text>
             <Carrousel showArrows>
               {[...Array(9)].map((_, i) => (
-                <WeeklyWeatherCard />
+                <WeeklyWeatherCard key={i} />
               ))}
             </Carrousel>
           </VStack>
