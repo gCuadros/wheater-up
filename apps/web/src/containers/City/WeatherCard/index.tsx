@@ -19,7 +19,7 @@ interface Props extends BoxProps {
 const WeatherCard = ({ date, monthName, ...props }: Props) => {
   return (
     <VStack
-      borderRadius="8px"
+      borderRadius="16px"
       padding="20px"
       width="full"
       background="linear-gradient(to bottom right, #94A3DD, #1D83FF)"

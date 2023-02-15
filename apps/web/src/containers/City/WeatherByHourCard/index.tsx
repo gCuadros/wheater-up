@@ -6,11 +6,13 @@ interface Props extends BoxProps {}
 const WeatherByHourCard = () => {
   return (
     <VStack
-      borderRadius="8px"
+      minWidth={{ base: "100%", md: "120px" }}
+      borderRadius="16px"
       border="1px solid #faf9f9"
       padding="20px"
       spacing={4}
       boxShadow="md"
+      backgroundColor="white"
     >
       <Text fontSize="14px" fontWeight={600} color="#363e64">
         10AM

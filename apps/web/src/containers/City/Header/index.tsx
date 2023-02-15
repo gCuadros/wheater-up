@@ -20,7 +20,7 @@ const Header = ({ ...props }: Props) => {
     <HStack justifyContent="space-between" alignItems="center" {...props}>
       <Box width="full" maxWidth="500px">
         <SearchInput
-          borderRadius="8px"
+          borderRadius="16px"
           searchValue={search}
           onChange={setSearch}
           placeholder="Search for places"

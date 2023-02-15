@@ -94,7 +94,7 @@ const Carrousel = ({ showDots, showArrows, children, ...props }: Props) => {
         {showArrows && isPrevTabsButton && (
           <IconButton
             aria-label="prev-tabs-button"
-            bgColor={"white"}
+            bgColor={"transparent"}
             right={0}
             size="md"
             icon={<HiChevronLeft />}
@@ -130,7 +130,7 @@ const Carrousel = ({ showDots, showArrows, children, ...props }: Props) => {
         {showArrows && isNextTabsButton && (
           <IconButton
             aria-label="nex-tabs-button"
-            bgColor={"white"}
+            bgColor={"transparent"}
             right={0}
             size="md"
             icon={<HiChevronRight />}
