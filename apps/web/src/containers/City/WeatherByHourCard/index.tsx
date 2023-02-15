@@ -24,7 +24,7 @@ const WeatherByHourCard = ({
   const scollToRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scollToRef?.current?.scrollIntoView({ inline: "start" });
+    scollToRef?.current?.scrollIntoView({ block: "start", inline: "start" });
   }, [scollToRef]);
 
   return (
