@@ -1,8 +1,19 @@
 import { Box, BoxProps, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { getUrlIconWeather, useDateTime } from "utils";
 
-interface Props extends BoxProps {}
+interface Props extends BoxProps {
+  time?: Date;
+  locationTemperature?: number;
+  conditionStatus?: number;
+}
 
-const WeeklyWeatherCard = () => {
+const WeeklyWeatherCard = ({
+  time,
+  locationTemperature,
+  conditionStatus,
+  ...props
+}: Props) => {
+  const { dayName } = useDateTime(time);
   return (
     <VStack
       minW={{ base: "100%", md: "120px" }}
@@ -12,16 +23,17 @@ const WeeklyWeatherCard = () => {
       spacing={4}
       boxShadow="md"
       backgroundColor="white"
+      {...props}
     >
       <Box boxSize="50px">
-        <Image src="/assets/icons/weather/sun.png" alt="weather" />
+        <Image src={getUrlIconWeather(conditionStatus)} alt="weather" />
       </Box>
       <Text fontSize="14px" fontWeight={600} color="#363e64">
-        Wed
+        {dayName}
       </Text>
       <HStack spacing={0}>
         <Text fontSize="14px" fontWeight="bold" color="#363e64">
-          9
+          {locationTemperature}
         </Text>
         <Text
           as="span"

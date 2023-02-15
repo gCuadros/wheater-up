@@ -75,8 +75,13 @@ const City = () => {
               Weekly Weather
             </Text>
             <Carrousel showArrows gap={8}>
-              {cityForecast?.forecast.forecastday.map((day) => (
-                <WeeklyWeatherCard key={day.date_epoch} />
+              {cityForecast?.forecast.forecastday.map((day, index) => (
+                <WeeklyWeatherCard
+                  key={index}
+                  time={day.date}
+                  locationTemperature={day.day.avgtemp_c}
+                  conditionStatus={day.day.condition.code}
+                />
               ))}
             </Carrousel>
           </VStack>
