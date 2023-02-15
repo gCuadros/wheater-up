@@ -24,7 +24,9 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
         />
       </Box>
       <HStack>
-        {isLoading && <Skeleton height="40px" width="30px" />}
+        {isLoading && (
+          <Skeleton height="30px" width="40px" borderRadius="8px" />
+        )}
         {temperature && !isLoading && (
           <HStack spacing={0}>
             <Text fontSize="20px" fontWeight="bold" color="#363e64">
@@ -44,13 +46,15 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
               fontSize="20px"
               fontWeight="bold"
               color="#363e64"
-              alignSelf="flex-start"
+              paddingInlineStart="5px"
             >
               C
             </Text>
           </HStack>
         )}
-        {isLoading && <Skeleton height="20px" width="20px" />}
+        {isLoading && (
+          <Skeleton height="20px" width="20px" borderRadius="8px" />
+        )}
         {isDay !== undefined &&
           !isLoading &&
           (isDay ? (

@@ -3,14 +3,12 @@ import { useCurrentForecastCity } from "api/hooks/slug";
 import Header from "containers/City/Header";
 import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
-import { useDateTime } from "utils/useDateTime";
 
 import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";
 import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 const City = () => {
-  const { date, monthName } = useDateTime();
   const { data: cityForecast, isLoading } = useCurrentForecastCity();
   return (
     <Main
@@ -23,6 +21,7 @@ const City = () => {
         paddingX="20px"
         temperature={cityForecast?.current.temp_c}
         isDay={Boolean(cityForecast?.current.is_day)}
+        isLoading={isLoading}
       />
       <HStack justifyContent="space-between" alignItems="flex-start">
         <VStack
@@ -34,7 +33,16 @@ const City = () => {
           <Text fontSize="14px" fontWeight={600} color="#363e64">
             Current Weather
           </Text>
-          <WeatherCard date={date} monthName={monthName} />
+          <WeatherCard
+            locationName={cityForecast?.location.name}
+            locationTime={cityForecast?.location.localtime}
+            locationTemp={cityForecast?.current.temp_c}
+            conditionStatus={cityForecast?.current.condition.text}
+            wind={cityForecast?.current.wind_kph}
+            humidity={cityForecast?.current.humidity}
+            weatherCode={cityForecast?.current.condition.code}
+            minHeight="365px"
+          />
         </VStack>
         <VStack
           width="full"

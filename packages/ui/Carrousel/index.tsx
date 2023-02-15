@@ -64,6 +64,7 @@ const Carrousel = ({ showArrows, children, ...props }: Props) => {
         <Flex
           className="slides"
           p={"3"}
+          paddingTop={"0"}
           paddingInlineStart={"0"}
           gap={"3"}
           css={{

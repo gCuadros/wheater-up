@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export const useDateTime = () => {
-  const [dateTime, setDateTime] = useState(new Date());
+export const useDateTime = (targetDate?: Date) => {
+  const [dateTime, setDateTime] = useState(new Date(targetDate || Date.now()));
   const [date, setDate] = useState(dateTime.getDate());
   const [dayName, setDayName] = useState(
     new Intl.DateTimeFormat("en-ES", { weekday: "long" }).format(date)
