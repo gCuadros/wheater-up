@@ -1,4 +1,3 @@
-import * as React from "react";
+export * from "./Carrousel";
 export * from "./Main";
 export * from "./SearchInput";
-export * from "./Carrousel";

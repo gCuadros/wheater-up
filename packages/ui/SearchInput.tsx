@@ -1,5 +1,5 @@
 import { ReactNode, Ref } from "react";
-
+import { FiSearch, FiX } from "react-icons/fi";
 import {
   IconButton,
   Input,
@@ -8,7 +8,6 @@ import {
   InputProps,
   InputRightElement,
 } from "@chakra-ui/react";
-import { FiSearch, FiX } from "react-icons/fi";
 
 interface Props extends Omit<InputProps, "onChange"> {
   inputRef?: Ref<HTMLInputElement>;

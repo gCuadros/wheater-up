@@ -1,57 +1,17 @@
 import { Children, RefObject, useEffect, useRef, useState } from "react";
-
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { Box, Flex, FlexProps, HStack, IconButton } from "@chakra-ui/react";
 import useDraggableHorizontalScroll from "utils/useDraggableHorizontalScroll";
 import useScrollPositionX from "utils/useScrollPositionX";
 
-import { Box, Flex, FlexProps, HStack, IconButton } from "@chakra-ui/react";
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-
-import Dot from "./Dot";
-
 interface Props extends FlexProps {
-  showDots?: boolean;
   showArrows?: boolean;
 }
 
-const useScrollActiveElement = (
-  ref: RefObject<HTMLDivElement>,
-  length: number
-) => {
-  const [activeItem, setActiveItem] = useState(0);
-  useEffect(() => {
-    if (!ref.current) return;
-    const carrousel = ref.current;
-    const onScroll = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = carrousel;
-      const scrollPercentage = scrollLeft / (scrollWidth - clientWidth);
-      const item = Math.round(scrollPercentage * (length - 1));
-      setActiveItem(item);
-    };
-    carrousel.addEventListener("scroll", onScroll);
-    return () => {
-      carrousel.removeEventListener("scroll", onScroll);
-    };
-  }, [length, ref]);
-
-  const handleDotsClick = (index: number) => {
-    if (!ref.current) return;
-    setActiveItem(index);
-    ref.current.scrollTo({
-      left: ref.current.clientWidth * index,
-      behavior: "smooth",
-    });
-  };
-
-  return { activeItem, handleDotsClick };
-};
-
-const Carrousel = ({ showDots, showArrows, children, ...props }: Props) => {
+const Carrousel = ({ showArrows, children, ...props }: Props) => {
   const reactChildren = Children.toArray(children);
   const carrouselRef = useRef<HTMLDivElement>(null);
-  const { activeItem, handleDotsClick } = useScrollActiveElement(
-    carrouselRef,
-    reactChildren?.length
-  );
+
   const { onMouseDown, isGrabbing } =
     useDraggableHorizontalScroll(carrouselRef);
 
@@ -138,18 +98,6 @@ const Carrousel = ({ showDots, showArrows, children, ...props }: Props) => {
           />
         )}
       </HStack>
-      {showDots && (
-        <HStack pt="4" mx="auto" spacing="2">
-          {reactChildren.map((_, index) => (
-            <Dot
-              key={index}
-              index={index}
-              isActive={index === activeItem}
-              handleClick={handleDotsClick}
-            />
-          ))}
-        </HStack>
-      )}
     </Flex>
   );
 };

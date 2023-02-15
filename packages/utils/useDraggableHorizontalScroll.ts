@@ -3,12 +3,6 @@ import { RefObject, useState } from "react";
 export default function useDraggableHorizontalScroll(
   ref: RefObject<HTMLElement>
 ) {
-  if (process.env.NODE_ENV === "development") {
-    if (typeof ref !== "object" || typeof ref.current === "undefined") {
-      console.error("`useDraggableScroll` expects a single ref argument.");
-    }
-  }
-
   const [isGrabbing, setGrabbing] = useState(false);
 
   let initialPosition = { scrollTop: 0, scrollLeft: 0, mouseX: 0, mouseY: 0 };

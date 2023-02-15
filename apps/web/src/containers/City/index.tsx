@@ -1,8 +1,9 @@
 import { HStack, Text, VStack } from "@chakra-ui/react";
-import { useDateTime } from "utils/useDateTime";
-import Carrousel from "ui/Carrousel";
 import Header from "containers/City/Header";
+import Carrousel from "ui/Carrousel";
 import Main from "ui/Main";
+import { useDateTime } from "utils/useDateTime";
+
 import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";
 import WeeklyWeatherCard from "./WeeklyWeatherCard";

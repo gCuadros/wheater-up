@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { BiSun,BsFillMoonFill } from "react-icons/bs";
 import {
   Box,
   Button,
@@ -7,9 +9,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import SearchInput from "ui/SearchInput";
-import { useState } from "react";
 import { useDateTime } from "utils/useDateTime";
-import { BsFillMoonFill, BiSun } from "react-icons/bs";
 
 interface Props extends StackProps {}
 const Header = ({ ...props }: Props) => {

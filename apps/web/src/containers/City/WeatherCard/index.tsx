@@ -1,15 +1,15 @@
+import { MdOutlineWaterDrop } from "react-icons/md";
+import { SiWindicss } from "react-icons/si";
+import { TiLocationOutline } from "react-icons/ti";
 import {
   Box,
   BoxProps,
-  VStack,
+  Divider,
+  HStack,
   Image,
   Text,
-  HStack,
-  Divider,
+  VStack,
 } from "@chakra-ui/react";
-import { TiLocationOutline } from "react-icons/ti";
-import { SiWindicss } from "react-icons/si";
-import { MdOutlineWaterDrop } from "react-icons/md";
 
 interface Props extends BoxProps {
   date?: number;

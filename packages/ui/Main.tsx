@@ -1,4 +1,4 @@
-import { StackProps, Stack } from "@chakra-ui/react";
+import { Stack, StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {}
 
