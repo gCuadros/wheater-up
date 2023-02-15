@@ -1,17 +1,16 @@
 import { QueryFunctionContext, useQuery } from "@tanstack/react-query";
 import { API_KEY, fetcher } from "api/fetcher";
 import { stringify } from "querystring";
-import { FindCityByIpOrSlug } from "types/City/City.dto";
+import { FindCityForecastByIpOrSlug } from "types/City/CityForecast.dto";
 import { merge } from "utils/merge";
 
-type Props = FindCityByIpOrSlug["request"];
+type Props = FindCityForecastByIpOrSlug["request"];
 
 const defaultProps: Props = {
   query: {
     key: API_KEY,
     days: 7,
     aqi: "yes",
-    alerts: "yes",
   },
 };
 
@@ -29,8 +28,8 @@ export const fetchForecastCity = async ({
   queryKey: [{ query }],
 }: QueryFunctionContext<ReturnType<typeof cityKey>>) => {
   const q = stringify(query);
-  console.log(q);
-  const response: FindCityByIpOrSlug["response"] = await fetcher(
+
+  const response: FindCityForecastByIpOrSlug["response"] = await fetcher(
     `/forecast.json?${q}`
   );
   return {
