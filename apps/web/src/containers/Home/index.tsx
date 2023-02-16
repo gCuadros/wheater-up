@@ -1,4 +1,4 @@
-import { Button, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import { Flex, Stack, Text, VStack } from "@chakra-ui/react";
 import { useCurrentIpCity } from "api/hooks/ip/useIp";
 
 import Header from "components/Header";
@@ -36,10 +36,10 @@ const Home = () => {
             lineHeight={1.2}
             fontSize={{ base: "1xl", md: "2xl" }}
           >
-            Get the latest weather news and information on our website:
-            <br /> From local conditions to national and global weather
-            patterns, we bring you the latest updates and insights to help you
-            make informed decisions about your day-to-day activities.
+            Get the latest weather news and information on our website: From
+            local conditions to national and global weather patterns, we bring
+            you the latest updates and insights to help you make informed
+            decisions about your day-to-day activities.
           </Text>
           <WeatherCard
             locationName={currentCity?.location.name}
