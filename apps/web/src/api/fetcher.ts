@@ -1,7 +1,6 @@
 import { WeatherError } from "api/error";
 
 export const API_KEY = "ede93b110b4f476f8f022855231502";
-
 export const fetcher = async (url: string, init?: RequestInit) => {
   const res = await fetch(`https://api.weatherapi.com/v1${url}`, {
     ...init,
@@ -9,6 +8,24 @@ export const fetcher = async (url: string, init?: RequestInit) => {
       Accept: "application/json",
       "Content-Type": "application/json",
       ...init?.headers,
+    },
+  });
+
+  if (!res.ok) {
+    const message = await res.json();
+    throw new WeatherError(message, res.status);
+  }
+
+  return res.json();
+};
+
+export const ipFetcher = async () => {
+  const API_IP_KEY = "45d3b496e3803ea9bf3ebc0c28bbfe2f59de766039405a14e11bfc6c";
+
+  const res = await fetch(`https://api.ipdata.co?api-key=${API_IP_KEY}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
   });
 

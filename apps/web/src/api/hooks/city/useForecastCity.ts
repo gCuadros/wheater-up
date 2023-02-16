@@ -14,11 +14,11 @@ const defaultProps: Props = {
   },
 };
 
-export const cityKey = (props: Props) =>
+export const cityForecastKey = (props: Props) =>
   [
     {
-      id: "city",
-      scope: "city",
+      id: "cityForecast",
+      scope: "cityForecast",
       entity: "detail",
       ...merge(defaultProps, props),
     },
@@ -26,7 +26,7 @@ export const cityKey = (props: Props) =>
 
 export const fetchForecastCity = async ({
   queryKey: [{ query }],
-}: QueryFunctionContext<ReturnType<typeof cityKey>>) => {
+}: QueryFunctionContext<ReturnType<typeof cityForecastKey>>) => {
   const q = stringify(query);
 
   const response: FindCityForecastByIpOrSlug["response"] = await fetcher(
@@ -37,7 +37,7 @@ export const fetchForecastCity = async ({
 
 export const useForecastCity = (props: Props) =>
   useQuery({
-    queryKey: cityKey(props),
+    queryKey: cityForecastKey(props),
     queryFn: fetchForecastCity,
     enabled: !!props?.query?.q,
   });
