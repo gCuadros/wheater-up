@@ -14,7 +14,7 @@ const Thermometer = ({
   textColor,
   ...props
 }: Props) => {
-  if (!temperature) return null;
+  if (temperature === undefined) return null;
 
   return (
     <HStack spacing={0} {...props} alignItems="flex-start">

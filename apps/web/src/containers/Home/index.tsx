@@ -6,7 +6,6 @@ import WeatherCard from "components/Home/WeatherCard";
 
 const Home = () => {
   const { data: currentCity, isLoading } = useCurrentIpCity();
-  console.log(currentCity);
 
   return (
     <Flex
