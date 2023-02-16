@@ -1,7 +1,38 @@
-import { VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import { API_KEY } from "api/fetcher";
+import { cityKey, fetchCity } from "api/hooks/city/useCity";
 import City from "containers/City";
+import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
+import { ParsedUrlQuery } from "querystring";
 
+interface Params extends ParsedUrlQuery {
+  citySlug: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const queryClient = new QueryClient();
+
+  const { citySlug } = params as Params;
+
+  let city;
+
+  city = await fetchCity({
+    queryKey: cityKey({
+      query: { q: citySlug.toLowerCase(), key: API_KEY, days: 7, aqi: "yes" },
+    }),
+    meta: undefined,
+  });
+
+  queryClient.setQueryData(cityKey({ query: { q: citySlug } }), city);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 const Page = () => {
   return (
     <>

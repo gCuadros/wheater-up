@@ -27,14 +27,22 @@ const City = () => {
       backgroundColor="#f0f5ff"
       position="relative"
     >
-      <Link href="/" padding="20px" position="absolute" top="0px">
+      <Link
+        href="/"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        padding="20px"
+        position="absolute"
+        top="0px"
+      >
         <Box boxSize="25px" borderRadius="50%" border="1px solid #1A202C">
           <Image src="/assets/logo.png" alt="logo" />
         </Box>
+        <Text fontSize="12px" fontWeight={500} paddingInlineStart="5px">
+          WeatherUp
+        </Text>
       </Link>
-      <Text fontSize="12px" fontWeight={500}>
-        WeatherUp
-      </Text>
 
       <Header
         paddingX="20px"
