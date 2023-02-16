@@ -1,4 +1,4 @@
-import { Button, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import { Flex, Stack, Text, VStack } from "@chakra-ui/react";
 import { useCurrentIpCity } from "api/hooks/ip/useIp";
 
 import Header from "components/Header";
