@@ -1,10 +1,5 @@
-import { Button } from "@chakra-ui/react";
+import Home from "containers/Home";
 
-export default function Web() {
-  return (
-    <div>
-      <h1>Web</h1>
-      <Button />
-    </div>
-  );
-}
+const Page = () => <Home />;
+
+export default Page;

@@ -1,16 +1,22 @@
-import { Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Image, Stack, Text, VStack } from "@chakra-ui/react";
 import { useCurrentForecastCity } from "api/hooks/slug";
-import Header from "containers/City/Header";
+import Link from "next/link";
 import Main from "ui/Main";
 
 import Carrousel from "components/Carrousel";
+import Header from "components/Header";
 
 import WeatherByHourCard from "./WeatherByHourCard";
 import WeatherCard from "./WeatherCard";
 import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 const City = () => {
-  const { data: cityForecast, isLoading } = useCurrentForecastCity();
+  const {
+    data: cityForecast,
+    isLoading,
+    isError,
+    isFetched,
+  } = useCurrentForecastCity();
 
   return (
     <Main
@@ -18,7 +24,19 @@ const City = () => {
       spacing={8}
       paddingY="20px"
       backgroundColor="#f0f5ff"
+      position="relative"
     >
+      <HStack padding="20px" position="absolute" top="0px">
+        <Link href={"/"}>
+          <Box boxSize="25px" borderRadius="50%" border="1px solid #1A202C">
+            <Image src="/assets/logo.png" alt="logo" />
+          </Box>
+        </Link>
+        <Text fontSize="12px" fontWeight={500}>
+          WeatherUp
+        </Text>
+      </HStack>
+
       <Header
         paddingX="20px"
         temperature={cityForecast?.current.temp_c}
@@ -50,6 +68,7 @@ const City = () => {
             humidity={cityForecast?.current.humidity}
             weatherCode={cityForecast?.current.condition.code}
             maxHeight={{ base: "full", md: "365px" }}
+            minHeight={{ base: "auto", md: "365px" }}
           />
         </VStack>
         <VStack
