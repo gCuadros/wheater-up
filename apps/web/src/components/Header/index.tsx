@@ -48,7 +48,7 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
           borderRadius="8px"
           onFocus={onOpen}
           onChange={(e) => {
-            setSearch(e);
+            isActiveSearch(e) && setSearch(e);
             onOpen();
             inputSearchRef.current?.focus();
           }}
@@ -80,9 +80,9 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
                     }
                     color="#888"
                     onClick={() => {
+                      push(`/weather/${city.url}`);
                       onClose();
                       setSearch("");
-                      push(`/weather/${city.url}`);
                     }}
                   >
                     {city.name}, {city.region} , {city.country}
