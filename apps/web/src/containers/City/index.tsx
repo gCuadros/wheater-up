@@ -41,6 +41,8 @@ const City = () => {
           </Text>
           <WeatherCard
             locationName={cityForecast?.location.name}
+            locationRegion={cityForecast?.location.region}
+            locationCountry={cityForecast?.location.country}
             locationTime={cityForecast?.location.localtime}
             locationTemperature={cityForecast?.current.temp_c}
             conditionStatus={cityForecast?.current.condition.text}

@@ -6,6 +6,7 @@ import {
   BoxProps,
   Divider,
   HStack,
+  Icon,
   Image,
   Text,
   VStack,
@@ -17,6 +18,8 @@ import Thermometer from "../CityThermometer.tsx";
 interface Props extends BoxProps {
   locationTime?: string;
   locationName?: string;
+  locationRegion?: string;
+  locationCountry?: string;
   locationTemperature?: number;
   conditionStatus?: string;
   wind?: number;
@@ -27,6 +30,8 @@ interface Props extends BoxProps {
 const WeatherCard = ({
   locationTime,
   locationName,
+  locationRegion,
+  locationCountry,
   locationTemperature,
   conditionStatus,
   wind,
@@ -48,18 +53,37 @@ const WeatherCard = ({
       <HStack
         width="full"
         justifyContent="flex-start"
-        alignItems="center"
+        alignItems="flex-start"
         spacing={1}
       >
-        <TiLocationOutline color="white" fontSize="20px" fontWeight={600} />
-        <Text
+        <Icon
+          as={TiLocationOutline}
           color="white"
-          fontSize="16px"
+          fontSize="18px"
           fontWeight={600}
-          textShadow="dark-lg"
-        >
-          {locationName}
-        </Text>
+          position="relative"
+          top="3px"
+        />
+
+        <VStack spacing={0} alignItems="flex-start">
+          <Text
+            color="white"
+            fontSize="16px"
+            fontWeight={600}
+            textShadow="dark-lg"
+          >
+            {locationName}
+          </Text>
+          <Text
+            color="white"
+            opacity={0.8}
+            fontSize="10px"
+            fontWeight={600}
+            textShadow="dark-lg"
+          >
+            {locationRegion}, {locationCountry}
+          </Text>
+        </VStack>
       </HStack>
       <Box boxSize={{ base: "50px", md: "100px" }}>
         <Image src={getUrlIconWeather(weatherCode)} alt="weather" />

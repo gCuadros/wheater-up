@@ -17,27 +17,20 @@ const Thermometer = ({
   if (!temperature) return null;
 
   return (
-    <HStack spacing={0} {...props}>
+    <HStack spacing={0} {...props} alignItems="flex-start">
       <Text fontSize={temperatureTextSize} fontWeight="bold" color={textColor}>
         {temperature}
       </Text>
+
       <Text
         as="span"
         fontSize={degreeTextSize}
         fontWeight="bold"
         color={textColor}
-        alignSelf="flex-start"
+        paddingInlineStart="2px"
+        paddingTop="2px"
       >
-        º
-      </Text>
-      <Text
-        as="span"
-        fontSize={temperatureTextSize}
-        fontWeight="bold"
-        color={textColor}
-        paddingInlineStart="5px"
-      >
-        C
+        °C
       </Text>
     </HStack>
   );

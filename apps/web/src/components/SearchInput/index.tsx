@@ -24,10 +24,6 @@ const SearchInput = ({
   searchValue,
   ...props
 }: Props) => {
-  const reset = () => {
-    onChange && onChange("");
-  };
-
   return (
     <InputGroup flex="1" size={size} zIndex="base">
       <InputLeftElement pointerEvents="none">
@@ -38,25 +34,11 @@ const SearchInput = ({
         bg="white"
         ref={inputRef}
         type="text"
-        value={searchValue}
         onChange={(e) => {
           onChange && onChange(e.target.value);
         }}
         {...props}
       />
-      <InputRightElement w="auto" paddingRight="4px">
-        {searchValue && (
-          <IconButton
-            icon={<FiX />}
-            aria-label="clear-search"
-            size="xs"
-            variant="ghost"
-            onClick={reset}
-            data-testid="clear-search-selector"
-          />
-        )}
-        {rightElement}
-      </InputRightElement>
     </InputGroup>
   );
 };

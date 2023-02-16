@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BiSun } from "react-icons/bi";
 import { BsFillMoonFill } from "react-icons/bs";
 import { TiLocationOutline } from "react-icons/ti";
@@ -15,6 +15,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useDebounce } from "@react-hook/debounce";
 import { useSearchCities } from "api/hooks/city/useSearchCities";
 import { useRouter } from "next/router";
 
@@ -29,9 +30,9 @@ interface Props extends StackProps {
 }
 
 const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useDebounce<string>("", 500);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const inputSearchRef = useRef<HTMLInputElement>(null);
   const isActiveSearch = (search: string) => search.length >= 3;
 
   const { data: cities } = useSearchCities({ query: { q: search } });
@@ -39,22 +40,22 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
 
   const { push } = useRouter();
 
-  console.log(cities);
-
   return (
     <HStack justifyContent="space-between" alignItems="center" {...props}>
       <Box width="full" maxWidth="500px">
         <SearchInput
+          inputRef={inputSearchRef}
           borderRadius="8px"
-          searchValue={search}
+          onFocus={onOpen}
           onChange={(e) => {
             setSearch(e);
-            isActiveSearch(e) ? onOpen() : onClose();
+            onOpen();
+            inputSearchRef.current?.focus();
           }}
           placeholder="Search for places"
         />
         <Box position="absolute" marginTop="2px">
-          <Menu isOpen={isOpen}>
+          <Menu isOpen={isOpen && isCities}>
             <MenuList paddingBottom={0}>
               <HStack paddingX="3" justifyContent="space-between">
                 <Text
@@ -68,11 +69,7 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
                   <Icon as={TiLocationOutline} />
                   Places
                 </Text>
-                <CloseButton
-                  color="gray.500"
-                  size="sm"
-                  onClick={() => onClose()}
-                />
+                <CloseButton color="gray.500" size="sm" onClick={onClose} />
               </HStack>
 
               {isCities &&
@@ -84,24 +81,25 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
                     color="#888"
                     onClick={() => {
                       onClose();
+                      setSearch("");
                       push(`/weather/${city.url}`);
                     }}
                   >
-                    {city.name}
+                    {city.name}, {city.region} , {city.country}
                   </MenuItem>
                 ))}
             </MenuList>
           </Menu>
         </Box>
       </Box>
-      <HStack>
+      <HStack spacing={4}>
         {isLoading && (
           <Skeleton height="30px" width="40px" borderRadius="8px" />
         )}
         {!isLoading && (
           <Thermometer
             temperature={temperature}
-            temperatureTextSize="20px"
+            temperatureTextSize="32px"
             degreeTextSize="12px"
             textColor="#363e64"
           />
