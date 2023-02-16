@@ -4,19 +4,13 @@ import Link from "next/link";
 import Main from "ui/Main";
 
 import Carrousel from "components/Carrousel";
+import WeatherByHourCard from "components/City/WeatherByHourCard";
+import WeatherCard from "components/City/WeatherCard";
+import WeeklyWeatherCard from "components/City/WeeklyWeatherCard";
 import Header from "components/Header";
 
-import WeatherByHourCard from "./WeatherByHourCard";
-import WeatherCard from "./WeatherCard";
-import WeeklyWeatherCard from "./WeeklyWeatherCard";
-
 const City = () => {
-  const {
-    data: cityForecast,
-    isLoading,
-    isError,
-    isFetched,
-  } = useCurrentForecastCity();
+  const { data: cityForecast, isLoading } = useCurrentForecastCity();
 
   return (
     <Main

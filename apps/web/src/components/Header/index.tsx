@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 
 import SearchInput from "components/SearchInput";
 
-import Thermometer from "../../containers/City/CityThermometer.tsx";
+import Thermometer from "../City/CityThermometer.tsx";
 
 interface Props extends StackProps {
   temperature?: number;

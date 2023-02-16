@@ -2,9 +2,11 @@ import { Button, Flex, Stack, Text, VStack } from "@chakra-ui/react";
 import { useCurrentIpCity } from "api/hooks/ip/useIp";
 
 import Header from "components/Header";
+import WeatherCard from "components/Home/WeatherCard";
 
 const Home = () => {
-  const { data: cityForecast, isLoading } = useCurrentIpCity();
+  const { data: currentCity, isLoading } = useCurrentIpCity();
+  console.log(currentCity);
 
   return (
     <Flex
@@ -19,42 +21,38 @@ const Home = () => {
         justify={"center"}
         px={{ base: 4, md: 8 }}
         bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
+        spacing={4}
       >
         <Header
           w="full"
-          maxW={"2xl"}
-          temperature={cityForecast?.current.temp_c}
-          isDay={Boolean(cityForecast?.current.is_day)}
+          maxW={"3xl"}
+          temperature={currentCity?.current.temp_c}
+          isDay={Boolean(currentCity?.current.is_day)}
           isLoading={isLoading}
         />
-        <Stack maxW={"2xl"} align={"flex-start"} spacing={6}>
+        <Stack maxW={"3xl"} align={"flex-start"} spacing={6}>
           <Text
             color={"white"}
             fontWeight={700}
             lineHeight={1.2}
-            fontSize={{ base: "3xl", md: "4xl" }}
+            fontSize={{ base: "1xl", md: "2xl" }}
           >
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-            eiusmod tempor
+            Get the latest weather news and information on our website:
+            <br /> From local conditions to national and global weather
+            patterns, we bring you the latest updates and insights to help you
+            make informed decisions about your day-to-day activities.
           </Text>
-          <Stack direction={"row"}>
-            <Button
-              bg={"blue.400"}
-              rounded={"full"}
-              color={"white"}
-              _hover={{ bg: "blue.500" }}
-            >
-              Show me more
-            </Button>
-            <Button
-              bg={"whiteAlpha.300"}
-              rounded={"full"}
-              color={"white"}
-              _hover={{ bg: "whiteAlpha.500" }}
-            >
-              Show me more
-            </Button>
-          </Stack>
+          <WeatherCard
+            locationName={currentCity?.location.name}
+            locationRegion={currentCity?.location.region}
+            locationCountry={currentCity?.location.country}
+            locationTime={currentCity?.location.localtime}
+            locationTemperature={currentCity?.current.temp_c}
+            conditionStatus={currentCity?.current.condition.text}
+            wind={currentCity?.current.wind_kph}
+            humidity={currentCity?.current.humidity}
+            weatherCode={currentCity?.current.condition.code}
+          />
         </Stack>
       </VStack>
     </Flex>

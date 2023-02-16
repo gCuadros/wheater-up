@@ -14,7 +14,7 @@ export const ipKey = () =>
     },
   ] as const;
 
-export const fetchSearch = async ({
+export const fetchIp = async ({
   queryKey: [],
 }: QueryFunctionContext<ReturnType<typeof ipKey>>) => {
   const response: IpLocationDto = await ipFetcher();
@@ -24,8 +24,8 @@ export const fetchSearch = async ({
 export const useIpLocation = () =>
   useQuery({
     queryKey: ipKey(),
-    queryFn: fetchSearch,
-    select: (data) => data.ip,
+    queryFn: fetchIp,
+    select: (data) => data.city.toLowerCase(),
   });
 
 export const useCurrentIpForecastCity = () => {
