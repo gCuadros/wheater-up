@@ -75,6 +75,7 @@ const Header = ({ temperature, isDay, isLoading, ...props }: Props) => {
               {isCities &&
                 cities?.map((city, index) => (
                   <MenuItem
+                    key={`city-${city.name}`}
                     borderBottom={
                       cities.length - 1 === index ? "none" : "1px solid #eee"
                     }

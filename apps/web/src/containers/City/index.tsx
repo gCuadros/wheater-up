@@ -83,7 +83,7 @@ const City = () => {
             <Carrousel showArrows gap={{ base: 4, md: 8 }}>
               {cityForecast?.forecast.forecastday[0].hour.map((time, index) => (
                 <WeatherByHourCard
-                  key={index}
+                  key={`hour-${index}`}
                   time={time.time}
                   locationTemperature={time.temp_c}
                   iconUrl={time.condition.icon}
@@ -98,7 +98,7 @@ const City = () => {
             <Carrousel showArrows gap={{ base: 4, md: 8 }}>
               {cityForecast?.forecast.forecastday.map((day, index) => (
                 <WeeklyWeatherCard
-                  key={index}
+                  key={`day-${index}`}
                   time={day.date}
                   locationTemperature={day.day.avgtemp_c}
                   conditionStatus={day.day.condition.code}
