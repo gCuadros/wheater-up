@@ -11,14 +11,14 @@ const Home = () => {
     <Flex
       w={"full"}
       h={"100vh"}
-      backgroundImage={"url(/assets/images/weather/rainy.jpg)"}
+      backgroundImage={"url(/assets/images/weather/sunset.jpg)"}
       backgroundSize={"cover"}
       backgroundPosition={"center center"}
     >
       <VStack
         w={"full"}
-        justify={"center"}
-        px={{ base: 4, md: 8 }}
+        justify={{ base: "flex-star", md: "center" }}
+        padding="20px"
         bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
         spacing={4}
       >
@@ -36,10 +36,17 @@ const Home = () => {
             lineHeight={1.2}
             fontSize={{ base: "1xl", md: "2xl" }}
           >
-            Get the latest weather news and information on our website: From
-            local conditions to national and global weather patterns, we bring
-            you the latest updates and insights to help you make informed
-            decisions about your day-to-day activities.
+            Get the latest weather news and information on our website. From
+            local conditions to national and global weather patterns.
+          </Text>
+          <Text
+            color={"white"}
+            fontWeight={700}
+            lineHeight={1.2}
+            fontSize={{ base: "1xl", md: "2xl" }}
+          >
+            We bring you the latest updates and insights to help you make
+            informed decisions about your day-to-day activities.
           </Text>
           <WeatherCard
             locationName={currentCity?.location.name}

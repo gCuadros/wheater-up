@@ -35,6 +35,7 @@ const City = () => {
         padding="20px"
         position="absolute"
         top="0px"
+        _hover={{ textDecoration: "none" }}
       >
         <Box boxSize="25px" borderRadius="50%" border="1px solid #1A202C">
           <Image src="/assets/logo.png" alt="logo" />
