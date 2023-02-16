@@ -21,7 +21,7 @@ const City = () => {
       position="relative"
     >
       <HStack padding="20px" position="absolute" top="0px">
-        <Link href={"/"}>
+        <Link href="/">
           <Box boxSize="25px" borderRadius="50%" border="1px solid #1A202C">
             <Image src="/assets/logo.png" alt="logo" />
           </Box>
